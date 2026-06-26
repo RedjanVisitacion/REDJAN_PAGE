@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>REDJAN Page – Reset Password</title>
+  <link rel="icon" href="/img/icon.png">
+  <style>
+    html,body{height:100%}
+    body{margin:0;background:#f6f7fb;font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;color:#111;display:flex;align-items:center;justify-content:center}
+    .card{width:92%;max-width:520px;background:#fff;border:1px solid #e6e8ee;border-radius:12px;box-shadow:0 10px 25px rgba(17,24,39,.08);overflow:hidden}
+    .head{padding:18px 22px;border-bottom:1px solid #f0f2f7}
+    .head h1{margin:0;font-size:18px}
+    .body{padding:22px}
+    .row{margin-bottom:10px}
+    .input{width:100%;padding:10px 12px;border:1px solid #e5e7eb;border-radius:8px;font-size:14px}
+    .msg{margin:10px 0 0;color:#374151}
+    .ok{color:#065f46}
+    .err{color:#991b1b}
+    .actions{padding:14px 22px;border-top:1px solid #f0f2f7;display:flex;gap:10px;justify-content:flex-end}
+    .btn{padding:10px 16px;border-radius:10px;border:1px solid #e5e7eb;background:#dc2626;color:#fff;cursor:pointer}
+    .btn.secondary{background:#f3f4f6;color:#111}
+    .muted{color:#6b7280;font-size:13px}
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="head">
+      <h1>REDJAN Page</h1>
+      <div class="muted">Reset password</div>
+    </div>
+    <div class="body" id="formWrap">
+      <div id="status" class="msg">Validating token…</div>
+      <div id="hint" class="muted" style="margin-top:8px"></div>
+      <div id="resetForm" style="display:none">
+        <div class="row"><input id="newPw" class="input" type="password" placeholder="New password"></div>
+        <div class="row"><input id="newPw2" class="input" type="password" placeholder="Confirm new password"></div>
+      </div>
+    </div>
+    <div class="actions">
+      <button id="btnSubmit" class="btn" style="display:none">Set password</button>
+      <a id="backLogin" href="/index.html#login" class="btn secondary">Back to Login</a>
+    </div>
+  </div>
+
+  <script>
+    (function(){
+      function qs(k){ const u=new URL(location.href); return u.searchParams.get(k)||''; }
+      function loginUrl(){
+        var path = location.pathname.replace(/\/html\/reset\.html$/, '/index.html');
+        return path + '?pwreset=1#login';
+      }
+      async function init(){
+        const token = qs('token');
+        const status = document.getElementById('status');
+        const hint = document.getElementById('hint');
+        const back = document.getElementById('backLogin'); if (back) back.href = loginUrl();
+        if(!token){ status.textContent='Missing token.'; status.className='msg err'; return; }
+        const urls = [
+          '../php/password_reset.php?token='+encodeURIComponent(token),
+          '/php/password_reset.php?token='+encodeURIComponent(token),
+          '/VISITACION-LANDING-PAGE/php/password_reset.php?token='+encodeURIComponent(token)
+        ];
+        let res=null,last=0;
+        for(let i=0;i<urls.length;i++){
+          try{ const r=await fetch(urls[i],{cache:'no-store',credentials:'same-origin'}); last=r.status; const txt=await r.text(); try{res=JSON.parse(txt);}catch(e){ const s=txt.indexOf('{'); const e2=txt.lastIndexOf('}'); if(s>=0&&e2>s){ try{res=JSON.parse(txt.slice(s,e2+1));}catch(_){}} } if(res)break; }catch(e){ last=0; }
+        }
+        if(!res){ status.textContent='Server error ('+last+').'; status.className='msg err'; return; }
+        if(!res.success){ status.textContent=res.message||'Invalid or expired link.'; status.className='msg err'; return; }
+        status.textContent='Set a new password for '+(res.email||'your account')+'.';
+        status.className='msg';
+        document.getElementById('resetForm').style.display='block';
+        document.getElementById('btnSubmit').style.display='inline-block';
+        document.getElementById('btnSubmit').onclick = async function(){
+          const p1 = document.getElementById('newPw').value;
+          const p2 = document.getElementById('newPw2').value;
+          if (!p1 || !p2){ hint.textContent='Please fill both fields.'; return; }
+          if (p1 !== p2){ hint.textContent='Passwords do not match.'; return; }
+          const body = new URLSearchParams(); body.set('action','reset'); body.set('token', token); body.set('password', p1);
+          const postUrls = [
+            '../php/password_reset.php',
+            '/php/password_reset.php',
+            '/VISITACION-LANDING-PAGE/php/password_reset.php'
+          ];
+          let data=null,last2=0;
+          for(let i=0;i<postUrls.length;i++){
+            try{ const r=await fetch(postUrls[i]+'?t='+(Date.now()),{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:body.toString(),credentials:'same-origin'}); last2=r.status; const txt=await r.text(); try{data=JSON.parse(txt);}catch(e){ const s=txt.indexOf('{'); const e2=txt.lastIndexOf('}'); if(s>=0&&e2>s){ try{data=JSON.parse(txt.slice(s,e2+1));}catch(_){}} } if(data)break; }catch(e){ last2=0; }
+          }
+          if(!data){ hint.textContent='Server error ('+last2+').'; return; }
+          if (data.success){ status.textContent = data.message || 'Password has been reset.'; status.className='msg ok'; hint.textContent='Redirecting to Login…'; setTimeout(function(){ window.location.replace(loginUrl()); }, 1200); }
+          else { status.textContent = data.message || 'Password reset failed.'; status.className='msg err'; hint.textContent = data.hint ? String(data.hint) : ''; }
+        };
+      }
+      init();
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+    .dot{
+        color: white;
+    }
+    /* Hash-route overlay for Login */
+    #route-login-overlay { position: fixed; inset: 0; z-index: 9999; display: none; background: #000; }
+    #route-login-overlay iframe { width: 100%; height: 100%; border: 0; display: block; }
+</style>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RPSV_CODES</title>
+    <link rel="icon" href="img/icon.png">
+    <!-- link file icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+    <!-- Link Swiper's CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+
+
+    <!-- link file css -->
+    <link rel="stylesheet" href="css/styles.css?v=20260102c">
+</head>
+<body>
+    <div class="header">
+        <div class="contanier">
+            <i id="btnMenu" class="fa-solid fa-bars"></i>
+            <nav>
+                <img src="img/logo.png" alt="">
+                <div class="nav-links">
+                    <a href="#home" class="active">Home</a>
+                    <a href="#about">About</a>
+                    <a href="#Service">Services</a>
+                    <a href="#Blog">Blog</a>
+                    <a href="#Pages">Pages</a>
+                    <a href="#Contacts">Contacts</a>
+                    
+
+                    <a href="#login" class="btn" target="rpsv_login" onclick="window.open('#login','rpsv_login'); return false;">Login</a>
+                </div>    
+                
+            </nav>
+        </div>
+    </div>
+
+    <!-- start Home  -->
+
+    
+
+    <section class="home" id="home">
+        <div class="hero-slides"></div>
+        <div class="contanier">
+            <div class="text">
+                <p>Hello <span class="sep"></span> I am</p>
+                <h1>Redjan Phil S. Visitacion</h1>
+                <p class="typed-roles"><span id="typed"></span><span class="cursor">|</span></p>
+                
+                <!--
+                <ul>
+                    <li>A BSIT Student</li>
+                    <li>Editor</li>
+                    <li>Programmer</li>
+                    <li>Photographer</li>
+                </ul>
+                 -->
+                <a href="https://redjanvisitacion.github.io/Curriculum-Vitae/" target="_blank">
+                    <button class="cv-button">View CV</button>
+                </a>
+
+                <a href="html/Certificate.html">
+                    <button class="cv-button">Certificate</button>
+                </a>
+
+                <a href="https://redjanvisitacion.github.io/RPSV-GAMES/main.html">
+                    <button class="cv-button">Play</button>
+                </a>
+
+
+                <a href="https://redjanvisitacion.github.io/RPSV_AI/">
+                    <button id="cv-button" class="cv-button">AI</button>
+                </a>
+            
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- start About -->
+
+    <section class="about" id="about">
+        <div class="sec-top">
+            <span>about</span>
+        </div>
+
+        <div class="contanier">
+
+            <div class="content">
+                <div class="text">
+                    <h3>About Me</h3>
+                    <span>I am BSIT student Creative Designer Photographer and Developer</span>
+                    <p>Self-motivation is the force that keeps pushing us to go on – it's our internal drive to achieve, produce, develop, and keep moving forward. When you think you're ready to quit something, or you just don't know how to start, your self-motivation is what pushes you to go on. Most good programmers do programming not because they expect to get paid or get adulation by the public, but because it is fun to program.</p>
+                           <img src="img/sign.png" alt="">
+
+                </div>
+                <div class="div-img">
+                    <img src="img/about.png" alt="">
+                </div>
+            </div>
+            
+ <!-- start Service -->
+
+<section class="Service" id="Service">
+    <div class="sec-top">
+        <span>Services</span>
+    </div>
+
+    <div class="cont2">
+
+        <!-- Promo Number Section -->
+        <div class="promo-number">
+            <div class="small-box bord-rig bord-botm">
+                <span>0</span>
+                <p>All Ex</p>
+            </div>
+
+            <div class="small-box bord-botm">
+                <span>3</span>
+                <p>Years Experience</p>
+            </div>
+
+            <div class="small-box bord-rig">
+                <span>0</span>
+                <p>Girl Friend</p>
+            </div>
+
+            <div class="small-box">
+                <span>1</span>
+                <p>NCII holder</p>
+            </div>
+        </div>
+
+        <!-- Skills Section -->
+        
+        <div class="skill-with-social">
+            <div class="skill-list">
+                <h3 class="heading">My Skills</h3>
+
+                <div class="single-skill">
+                    <div class="skill-title">
+                        <h3>Being Active on Social Media</h3>
+                        <span>95%</span>
+                    </div>
+                    <div class="progress">
+                        <div class="progress-bar" style="width: 95%;"></div>
+                    </div>
+                </div>
+
+                <div class="single-skill">
+                    <div class="skill-title">
+                        <h3>Video Editor</h3>
+                        <span>40%</span>
+                    </div>
+                    <div class="progress">
+                        <div class="progress-bar" style="width: 40%;"></div>
+                    </div>
+                </div>
+
+                <div class="single-skill">
+                    <div class="skill-title">
+                        <h3>Programmer</h3>
+                        <span>50%</span>
+                    </div>
+                    <div class="progress">
+                        <div class="progress-bar" style="width: 50%;"></div>
+                    </div>
+                </div>
+
+                <div class="single-skill">
+                    <div class="skill-title">
+                        <h3>Photographer</h3>
+                        <span>70%</span>
+                    </div>
+                    <div class="progress">
+                        <div class="progress-bar" style="width: 70%;"></div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- End Service Section -->
+
+                
+<!-- Blog Section -->
+<section class="Service" id="Blog">
+    <div class="sec-top">
+        <span>Blog</span>
+    </div>
+    <p class="section-description">
+        Welcome to my blog—a space where I share my journey in photography, programming, and video editing.  
+        From capturing emotions through the lens to tackling coding challenges and crafting stunning visuals,  
+        this blog is a mix of creativity, insights, and inspiration. Join me as I explore new ideas, share tips,  
+        and navigate the exciting path of learning and growth. Let’s create, innovate, and inspire together!
+    </p>
+    
+</section>
+
+
+
+<section class="blog">
+    <div class="container">
+        <!-- Photos Section -->
+<h2 class="section-title">📸 Photo Gallery</h2>
+<div class="gallery-container" id="photoGallery"></div>
+
+<!-- Videos Section -->
+<h2 class="section-title">🎥 Video Gallery</h2>
+<div class="gallery-container">
+    <div class="gallery-item" onclick="openLightbox('video/memories.mp4', 'video')">
+        <video src="video/memories.mp4" muted></video>
+    </div>
+    <div class="gallery-item" onclick="openLightbox('video/Reels.mp4', 'video')">
+        <video src="video/Reels.mp4" muted></video>
+    </div>
+    <div class="gallery-item" onclick="openLightbox('video/SRMS.mp4', 'video')">
+        <video src="video/SRMS.mp4" muted></video>
+    </div>
+</div>
+
+<!-- Audio Section -->
+<h2 class="section-title">🎵 Audio Gallery</h2>
+<div class="audio-container">
+    <div class="audio-item">
+        <p>🎶 God's not Dead</p>
+        <audio controls>
+            <source src="audio/GodsNotDead.mp3" type="audio/mpeg">
+        </audio>
+    </div>
+    <div class="audio-item">
+        <p>🎶 Praise</p>
+        <audio controls>
+            <source src="audio/Praise.mp3" type="audio/mpeg">
+        </audio>
+    </div>
+</div>
+
+<!-- Lightbox -->
+<div id="lightbox" class="lightbox">
+    <span class="close" onclick="closeLightbox()">&times;</span>
+    <img id="lightbox-img" class="lightbox-img">
+    <video id="lightbox-video" class="lightbox-video" controls></video>
+</div>
+    </div>
+</section>
+
+
+<!-- Pages Section -->
+<section class="pages" id="Pages">
+    <div class="sec-top">  
+        <span>Pages</span>
+    </div>
+    <div class="container">
+        <div class="content">
+            <h2>Skills & Projects</h2>
+            <p class="words">Dive into my world of programming, photography, and video editing. Check out my latest works, tutorials, and projects.</p>
+            
+            <div class="page-links">
+                <a href="#" class="page-card" onclick="alert('This part is not completely done');">
+                    <i class="fa-solid fa-code"></i>
+                    <h3>Programming</h3>
+                    <p>See my latest coding projects and software development work.</p>
+                </a>
+            
+                <a href="#" class="page-card" onclick="alert('This part is not completely done');">
+                    <i class="fa-solid fa-camera"></i>
+                    <h3>Photography</h3>
+                    <p>Explore my best photography shots and editing techniques.</p>
+                </a>
+            
+                <a href="#" class="page-card" onclick="alert('This part is not completely done');">
+                    <i class="fa-solid fa-film"></i>
+                    <h3>Video Editing</h3>
+                    <p>Watch my editing projects and learn cool video effects.</p>
+                </a>
+            
+                <a href="#" class="page-card" onclick="alert('This part is not completely done');">
+                    <i class="fa-solid fa-chalkboard-teacher"></i>
+                    <h3>Tutorials</h3>
+                    <p>Learn programming, photography, and editing from my guides.</p>
+                </a>
+            </div>
+            
+        </div>
+    </div>
+</section>
+
+
+   
+       <!-- Contacts Section -->
+<section class="Contacts" id="Contacts">
+
+    
+
+    <div class="sec-top">  
+        <span>Contacts</span>
+
+    </div>
+
+
+    <div class="container">
+        <div class="contact-content">
+            <p>If you have any inquiries about programming, photography, or video editing, feel free to reach out to me. I'm always open to collaborations and new projects!</p>
+        </div>
+
+
+        
+
+        <!-- Contact Form -->
+        <div class="contact-form">
+            <h3>Send a Message</h3>
+            <form method="POST" action="#" onsubmit="return false;">
+                <input type="text" name="name" placeholder="Your Name" required>
+                <input type="email" name="email"  placeholder="Your Email" required>
+                <textarea name="message" placeholder="Your Message" rows="4" required></textarea>
+                <button type="button" id="sendMessageBtn">Send</button>
+            </form>
+        </div>
+    </div> 
+    
+
+    
+    
+
+        <!-- Social Media Links -->
+        <div class="social-status">
+            <h3>Follow Me On:</h3>
+
+
+            <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@rpsv_codes" data-unique-id="rpsv_codes" data-embed-type="creator" style="max-width: 780px; min-width: 288px;" > <section> <a target="_blank" href="https://www.tiktok.com/@rpsv_codes?refer=creator_embed">@rpsv_codes</a> </section> </blockquote> <script async src="https://www.tiktok.com/embed.js"></script>
+
+
+
+
+            <a href="https://github.com/RedjanVisitacion" target="_blank">
+                <img src="https://img.shields.io/badge/GitHub-RedjanVisitacion-blue?style=for-the-badge&logo=github" alt="GitHub Profile">
+            </a>
+            
+
+
+
+
+            <p>&#8203;</p>
+
+
+            <div class="social-profile-list">
+                <a href="https://www.instagram.com/redjanphilsvisitacion?igsh=MXF2c2t5ZGttanJjeA==" target="_blank">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://web.facebook.com/zedjan.zedjan.3" target="_blank">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="https://www.tiktok.com/@rpsv_codes?_t=8k15sq4ZSew&_r=1" target="_blank">
+                    <i class="fab fa-tiktok"></i>
+                </a>
+                <a href="https://www.youtube.com/@redjanvisitacion5570" target="_blank">
+                    <i class="fab fa-youtube"></i>
+                </a>
+               
+            </div>
+        </div>
+
+        
+    </div>
+
+
+    
+
+</section>
+
+
+     <!-- Footer -->
+
+   <footer>
+    <p>&copy; 2025 Redjan Phil S. Visitacion | Owner of this landing page</p>
+   </footer>
+    
+
+
+
+
+    <!-- Hash-route: login overlay -->
+    <div id="route-login-overlay">
+        <iframe id="route-login-frame" src="about:blank" title="Login"></iframe>
+    </div>
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+
+    <!-- link file JS -->
+    <script src="function/main.js?v=20260102e"></script>
+    <script>
+      (function(){
+        function updateRoute(){
+          var hash = location.hash;
+          var overlay = document.getElementById('route-login-overlay');
+          var frame = document.getElementById('route-login-frame');
+          if(!overlay || !frame) return;
+          var isLogin = (hash === '#login' || hash === '#/login');
+          if(isLogin){
+            overlay.style.display = 'block';
+            // Always reload login content to reflect latest settings (e.g., dynamic background)
+            frame.src = 'html/Login.html?t=' + Date.now();
+            frame.dataset.loaded = '1';
+          } else {
+            overlay.style.display = 'none';
+          }
+        }
+        window.addEventListener('hashchange', updateRoute);
+        window.addEventListener('load', updateRoute);
+      })();
+    </script>
+</body>
+</html>

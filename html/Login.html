@@ -1,0 +1,282 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../css/styles.css">
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <link rel="icon" href="/img/icon.png">
+  <title>REDJAN Page â€“ Login & Register</title>
+  <style>
+    .hidden {
+      display: none !important;
+    }
+    .modal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.45);display:flex;align-items:center;justify-content:center;z-index:50}
+    .modal-card{width:92%;max-width:440px;background:#fff;border-radius:12px;box-shadow:0 10px 25px rgba(0,0,0,.2);overflow:hidden}
+    .modal-head{padding:14px 18px;border-bottom:1px solid #f0f2f7}
+    .modal-head h3{margin:0;font-size:18px}
+    .modal-body{padding:18px}
+    .modal-actions{display:flex;gap:10px;justify-content:flex-end;padding:12px 18px;border-top:1px solid #f0f2f7}
+    .input{width:100%;padding:10px 12px;border:1px solid #e5e7eb;border-radius:8px;font-size:14px}
+    .btn-sm{padding:8px 14px;border-radius:8px;border:none;cursor:pointer;background:#dc2626;color:#fff}
+    .btn-secondary{background:#f3f4f6;color:#111}
+  </style>
+</head>
+<body id="body">
+  <div class="wrapper">
+    <!-- LOGIN FORM -->
+    <form id="loginForm" onsubmit="login(event)">
+      <h1 class="login">Login</h1>
+      <div class="input-box">
+        <input type="text" id="loginUsername" name="username" placeholder="Username" required>
+        <i class='bx bxs-user'></i>
+      </div>
+
+  <!-- FORGOT PASSWORD MODAL -->
+  <div id="forgotModal" class="modal-backdrop hidden">
+    <div class="modal-card">
+      <div class="modal-head"><h3>Reset password</h3></div>
+      <div class="modal-body">
+        <p style="margin:0 0 10px;color:#374151;font-size:14px">Enter your account email and we'll send you a reset link.</p>
+        <input id="fpEmail" class="input" type="email" placeholder="Email" style="margin:0 0 10px">
+        <p id="fpMsg" style="margin:10px 0 0;color:#6b7280;font-size:13px"></p>
+      </div>
+      <div class="modal-actions">
+        <button type="button" class="btn-sm btn-secondary" onclick="closeForgot()">Close</button>
+        <button type="button" class="btn-sm" onclick="submitForgot()">Send link</button>
+      </div>
+    </div>
+  </div>
+      <div class="input-box">
+        <input type="password" id="loginPassword" name="password" placeholder="Password" required>
+        <i class='bx bxs-lock-alt'></i>
+      </div>
+      <div class="remember-forgot">
+        <label><input type="checkbox" id="rememberMe"> Remember me</label>
+        <a href="#" onclick="openVerify('');return false;">Verify email</a>
+        <a href="#" style="margin-left:10px" onclick="openForgot();return false;">Forgot password?</a>
+      </div>
+      <button type="submit" class="btn">Login</button>
+      <div class="register-link">
+        <p>Don't have an account? <a href="#" onclick="toggleForms()">Register</a></p>
+      </div>
+    </form>
+
+    <!-- REGISTER FORM -->
+    <form id="registerForm" class="hidden" onsubmit="register(event)">
+      <h1 class="register">Register</h1>
+      <div class="input-box">
+        <input type="text" id="regUsername" name="username" placeholder="Username" required>
+        <i class='bx bxs-user'></i>
+      </div>
+      <div class="input-box">
+        <input type="email" id="regEmail" name="email" placeholder="Email" required>
+        <i class='bx bxs-envelope'></i>
+      </div>
+      <div class="input-box">
+        <input type="password" id="regPassword" name="password" placeholder="Password" required>
+        <i class='bx bxs-lock-alt'></i>
+      </div>
+      <div class="input-box">
+        <input type="password" id="regConfirmPassword" name="confirm_password" placeholder="Confirm Password" required>
+        <i class='bx bxs-lock-alt'></i>
+      </div>
+      <button type="submit" class="btn">Register</button>
+      <div class="register-link">
+        <p>Already have an account? <a href="#" onclick="toggleForms()">Login</a></p>
+      </div>
+    </form>
+  </div>
+
+  <!-- VERIFY MODAL -->
+  <div id="verifyModal" class="modal-backdrop hidden">
+    <div class="modal-card">
+      <div class="modal-head"><h3>Email verification</h3></div>
+      <div class="modal-body">
+        <p style="margin:0 0 10px;color:#374151;font-size:14px">We sent a 6â€‘digit code to <b id="verifyEmailLabel"></b>. Enter it below to verify your account.</p>
+        <input id="verifyEmail" class="input" type="email" placeholder="Email" style="margin:0 0 10px">
+        <input id="verifyCode" class="input" type="text" placeholder="Verification code" maxlength="6" inputmode="numeric">
+        <p id="verifyMsg" style="margin:10px 0 0;color:#6b7280;font-size:13px"></p>
+      </div>
+      <div class="modal-actions">
+        <button type="button" class="btn-sm btn-secondary" onclick="closeVerify()">Close</button>
+        <button type="button" class="btn-sm" onclick="submitVerify()">Verify</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function toggleForms() {
+      document.getElementById("loginForm").classList.toggle("hidden");
+      document.getElementById("registerForm").classList.toggle("hidden");
+    }
+
+    // Helpers
+    function safeParseJSON(txt){
+      try { return JSON.parse(txt); } catch(e){}
+      var cut = txt.indexOf('}{');
+      if (cut > 0) { try { return JSON.parse(txt.slice(0, cut+1)); } catch(e){} }
+      var s = txt.indexOf('{'); var e = txt.lastIndexOf('}');
+      if (s >= 0 && e > s) { try { return JSON.parse(txt.slice(s, e+1)); } catch(err){} }
+      return null;
+    }
+    function openVerify(email){
+      var m = document.getElementById('verifyModal');
+      document.getElementById('verifyEmail').value = email || '';
+      document.getElementById('verifyEmailLabel').textContent = email || '';
+      document.getElementById('verifyCode').value='';
+      document.getElementById('verifyMsg').textContent='Code expires in 30 minutes.';
+      m.classList.remove('hidden');
+    }
+    function closeVerify(){ document.getElementById('verifyModal').classList.add('hidden'); }
+
+    function register(event) {
+      event.preventDefault();
+      const password = document.getElementById("regPassword").value;
+      const confirmPassword = document.getElementById("regConfirmPassword").value;
+      if (password !== confirmPassword) {
+        alert("Passwords do not match!");
+        return;
+      }
+      const form = document.getElementById("registerForm");
+      const formData = new FormData(form);
+      fetch(`../php/register.php?t=${Date.now()}`, { method: "POST", body: formData })
+        .then(async r => {
+          const txt = await r.text();
+          const res = safeParseJSON(txt);
+          if (!res) { alert(`Server error (${r.status}). ${txt.substring(0,200)}`); return; }
+          const msg = res.message || (res.success ? "Registration successful!" : "Registration failed.");
+          if (!res.success) { alert(res.hint ? `${msg} Details: ${res.hint}` : msg); return; }
+          const email = document.getElementById('regEmail').value.trim();
+          const vUrl = (res.verify_url && typeof res.verify_url === 'string') ? res.verify_url : '';
+          const vTok = res.verify_token || '';
+          if (vUrl) { window.top.location.href = vUrl; return; }
+          if (vTok) {
+            var base = 'verify.html';
+            if (!/\/html\//.test(location.pathname)) { base = '../html/verify.html'; }
+            window.top.location.href = base + '?token=' + encodeURIComponent(vTok);
+            return;
+          }
+          openVerify(email);
+        })
+        .catch(e => alert(`Network error: ${e.message || e}`));
+    }
+
+    function login(event) {
+      event.preventDefault();
+      const form = document.getElementById("loginForm");
+      const formData = new FormData(form);
+      fetch(`../php/login.php?t=${Date.now()}`, { method: "POST", body: formData })
+        .then(async r => {
+          const txt = await r.text();
+          const res = safeParseJSON(txt);
+          if (!res) { alert(`Server error (${r.status}). ${txt.substring(0,200)}`); return; }
+          if (res.success) {
+            try{
+              var cb = document.getElementById('rememberMe');
+              if (cb && cb.checked) {
+                localStorage.setItem('rpsv_remember_username', document.getElementById('loginUsername').value.trim());
+                localStorage.setItem('rpsv_remember','1');
+              } else {
+                localStorage.removeItem('rpsv_remember_username');
+                localStorage.removeItem('rpsv_remember');
+              }
+            }catch(e){}
+            if (res.role === 'admin') {
+              window.location.href = "../php/admin.php";
+            } else {
+              window.location.href = "../php/user.php";
+            }
+          } else {
+            const msg = res.message || "Invalid username or password.";
+            alert(res.hint ? `${msg} Details: ${res.hint}` : msg);
+          }
+        })
+        .catch(e => alert(`Network error: ${e.message || e}`));
+    }
+
+    function submitVerify(){
+      const email = document.getElementById('verifyEmail').value.trim();
+      const code = document.getElementById('verifyCode').value.trim();
+      if (!email || !code) { document.getElementById('verifyMsg').textContent = 'Email and code are required.'; return; }
+      const body = new URLSearchParams(); body.set('email', email); body.set('code', code);
+      fetch(`../php/verify_email.php?t=${Date.now()}`, { method:'POST', headers:{'Content-Type':'application/x-www-form-urlencoded'}, body: body.toString() })
+        .then(async r => { const txt = await r.text(); const res = safeParseJSON(txt);
+          if (!res) { document.getElementById('verifyMsg').textContent = `Server error (${r.status}).`; return; }
+          document.getElementById('verifyMsg').textContent = res.message || (res.success ? 'Verified!' : 'Verification failed.');
+          if (res.success) { setTimeout(() => { closeVerify(); toggleForms(); }, 800); }
+        })
+        .catch(e => { document.getElementById('verifyMsg').textContent = `Network error: ${e.message || e}`; });
+    }
+
+    // Forgot Password modal handlers
+    function openForgot(){
+      var m = document.getElementById('forgotModal');
+      document.getElementById('fpEmail').value = '';
+      document.getElementById('fpMsg').textContent = '';
+      m.classList.remove('hidden');
+    }
+    function closeForgot(){ document.getElementById('forgotModal').classList.add('hidden'); }
+    function submitForgot(){
+      var email = document.getElementById('fpEmail').value.trim();
+      if (!email) { document.getElementById('fpMsg').textContent = 'Email is required.'; return; }
+      var body = new URLSearchParams(); body.set('action','request'); body.set('email', email);
+      fetch(`../php/password_reset.php?t=${Date.now()}`, { method:'POST', headers:{'Content-Type':'application/x-www-form-urlencoded'}, body: body.toString() })
+        .then(async r => { const txt = await r.text(); const res = safeParseJSON(txt); document.getElementById('fpMsg').textContent = res && res.message ? res.message : 'If that email exists, a reset link will be sent.'; })
+        .catch(e => { document.getElementById('fpMsg').textContent = `Network error: ${e.message || e}`; });
+    }
+
+    (function(){
+      var el = document.getElementById('body');
+      if(!el) return;
+      var urls = ['../php/site_config.php?action=get&keys=login_bg,home_bg','/php/site_config.php?action=get&keys=login_bg,home_bg','/VISITACION-LANDING-PAGE/php/site_config.php?action=get&keys=login_bg,home_bg'];
+      (async function(){
+        var res = null;
+        for (var i=0;i<urls.length;i++){
+          try{ var r = await fetch(urls[i], { credentials: 'same-origin', cache: 'no-store' }); if(r.ok){ res = r; break; } }catch(e){}
+        }
+        try{
+          var data = res ? await res.json() : null;
+          var bg = data && (data.login_bg || data['login_bg'] || data.home_bg || data['home_bg']);
+          if (bg && typeof bg === 'string' && bg.indexOf('http') === 0){
+            // Remove colored overlay: use only the image as background
+            el.style.background = 'url("'+bg+'") center center / cover no-repeat fixed';
+          }
+        }catch(e){}
+      })();
+    })();
+
+    // If returning from verify.html or reset.html, keep Login shown and modals closed
+    (function(){
+      try{
+        var href = (window.top && window.top.location && window.top.location.href) ? window.top.location.href : location.href;
+        var u = new URL(href, location.origin);
+        var shouldShowLogin = (u.searchParams.get('verified') === '1' || u.searchParams.get('pwreset') === '1');
+        if (shouldShowLogin){
+          var lf = document.getElementById('loginForm');
+          var rf = document.getElementById('registerForm');
+          if (lf && rf){ lf.classList.remove('hidden'); rf.classList.add('hidden'); }
+          var m = document.getElementById('verifyModal');
+          if (m){ m.classList.add('hidden'); }
+          var m2 = document.getElementById('forgotModal');
+          if (m2){ m2.classList.add('hidden'); }
+        }
+      }catch(e){}
+    })();
+
+    // Initialize Remember Me
+    (function(){
+      try{
+        var name = localStorage.getItem('rpsv_remember_username');
+        var flag = localStorage.getItem('rpsv_remember') === '1';
+        if (flag && name){
+          var elU = document.getElementById('loginUsername');
+          if (elU) elU.value = name;
+          var cb = document.getElementById('rememberMe');
+          if (cb) cb.checked = true;
+        }
+      }catch(e){}
+    })();
+  </script>
+</body>
+</html>

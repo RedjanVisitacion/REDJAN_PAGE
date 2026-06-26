@@ -1,0 +1,14 @@
+# Local secrets and server-only config
+php/db.php
+php/config.local.php
+php/.gemini.key
+php/.groq.key
+backend/mailer/mailer_config.php
+backend/sms/config_sms.php
+backend_php/config.php
+
+# Common local/system files
+.env
+*.local
+Thumbs.db
+.DS_Store

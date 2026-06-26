@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>REDJAN Page – Verify Email</title>
+  <link rel="icon" href="/img/icon.png">
+  <style>
+    html,body{height:100%}
+    body{margin:0;background:#f6f7fb;font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;color:#111;display:flex;align-items:center;justify-content:center}
+    .card{width:92%;max-width:520px;background:#fff;border:1px solid #e6e8ee;border-radius:12px;box-shadow:0 10px 25px rgba(17,24,39,.08);overflow:hidden}
+    .head{padding:18px 22px;border-bottom:1px solid #f0f2f7}
+    .head h1{margin:0;font-size:18px}
+    .body{padding:22px}
+    .msg{margin:10px 0 0;color:#374151}
+    .ok{color:#065f46}
+    .err{color:#991b1b}
+    .actions{padding:14px 22px;border-top:1px solid #f0f2f7;display:flex;gap:10px;justify-content:flex-end}
+    .btn{padding:10px 16px;border-radius:10px;border:1px solid #e5e7eb;background:#dc2626;color:#fff;cursor:pointer}
+    .btn.secondary{background:#f3f4f6;color:#111}
+    .muted{color:#6b7280;font-size:13px}
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="head">
+      <h1>REDJAN Page</h1>
+      <div class="muted">Email verification</div>
+    </div>
+    <div class="body">
+      <div id="status" class="msg">Verifying your email…</div>
+      <div id="hint" class="muted" style="margin-top:8px"></div>
+    </div>
+    <div class="actions">
+      <a id="backLogin" href="/index.html#login" class="btn secondary">Back to Login</a>
+    </div>
+  </div>
+
+  <script>
+    (function(){
+      function qs(k){ const u=new URL(location.href); return u.searchParams.get(k)||''; }
+      function loginUrl(){
+        var path = location.pathname.replace(/\/html\/verify\.html$/, '/index.html');
+        return path + '?verified=1#login';
+      }
+      async function go(){
+        const token = qs('token');
+        const status = document.getElementById('status');
+        const hint = document.getElementById('hint');
+        var back = document.getElementById('backLogin');
+        if (back) { back.href = loginUrl(); }
+        if(!token){ status.textContent='Missing token.'; status.className='msg err'; return; }
+        const urls = [
+          '../php/verify_email.php',
+          '/php/verify_email.php',
+          '/VISITACION-LANDING-PAGE/php/verify_email.php'
+        ];
+        let res = null, lastStatus = 0;
+        for (let i=0;i<urls.length;i++){
+          try{
+            const r = await fetch(urls[i]+'?token='+encodeURIComponent(token)+'&t='+(Date.now()), { cache:'no-store', credentials:'same-origin' });
+            lastStatus = r.status;
+            const txt = await r.text();
+            try { res = JSON.parse(txt); } catch(e){
+              const s = txt.indexOf('{'); const e2 = txt.lastIndexOf('}');
+              if (s>=0 && e2>s){ try{ res = JSON.parse(txt.slice(s, e2+1)); } catch(e3){} }
+            }
+            if (res) break;
+          }catch(err){ lastStatus = 0; }
+        }
+        if(!res){ status.textContent = 'Server error ('+lastStatus+').'; status.className='msg err'; hint.textContent = ''; return; }
+        status.textContent = res.message || (res.success ? 'Email verified.' : 'Verification failed.');
+        status.className = 'msg ' + (res.success ? 'ok' : 'err');
+        if(res.success){
+          hint.textContent = 'You can now log in to your account.';
+          setTimeout(function(){ window.location.replace(loginUrl()); }, 1200);
+        }
+        else { hint.textContent = res.hint ? String(res.hint) : ''; }
+      }
+      go();
+    })();
+  </script>
+</body>
+</html>

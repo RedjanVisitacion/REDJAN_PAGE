@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" href="/VISITACION-LANDING-PAGE/img/icon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RPSV_CODES - Certificate</title>
+  <link rel="stylesheet" href="/VISITACION-LANDING-PAGE/css/certificate.css">
+</head>
+<body>
+
+  <!-- Name Input Modal -->
+  <div id="nameModal" class="modal">
+    <div class="modal-content">
+      <h2>Enter Your Full Name</h2>
+      <input type="text" id="nameInput" placeholder="Full Name" required>
+      <button id="submitName">Submit</button>
+    </div>
+  </div>
+
+  <!-- Certificate Description -->
+  <div class="say" id="say">
+    <h5 class="certificate-description">
+      This certificate is related to all about Redjan's website.
+    </h5>
+    <hr>
+  </div>
+
+  <!-- Certificate -->
+  <div class="certificate" id="certificate">
+    <img src="/VISITACION-LANDING-PAGE/img/logo.png" alt="use data to see photos">
+    <p class="Headers">Certificate of Remembrance</p>
+    <p class="text">This is to certify that</p>
+    <h2 id="recipientName" class="recipient-name">[Recipient Name]</h2>
+    <p class="text">has successfully completed visiting Redjan's</p>
+    <h3 id="courseName" class="course-name">Website</h3>
+    <br>
+    <p class="text">Awarded on</p>
+    <i id="date" class="date">[Date]</i>
+  </div>
+
+  <!-- Buttons -->
+  <div class="button" id="button">
+    <button id="backToHome" onclick="window.location.href='../RPSV_CODES.html'">Back to Home</button>
+    <button id="downloadBtn">Download Certificate</button>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"></script>
+  <script src="/VISITACION-LANDING-PAGE/function/Certificate.js"></script>
+
+</body>
+</html>

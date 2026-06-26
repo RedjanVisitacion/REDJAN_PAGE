@@ -1,0 +1,183 @@
+/* General Styles */
+:root{
+  --blue:rgb(212, 39, 68);
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(to right, #1a1a1a, #333); /* Darker background */
+  text-align: center;
+  padding: 20px;
+  margin: 0;
+}
+
+/* Certificate Description */
+.say {
+  margin-bottom: 20px;
+}
+
+.certificate-description {
+  font-size: 18px;
+  font-style: italic;
+  color: #ddd; /* Light gray for better contrast */
+}
+
+/* Certificate Styling */
+.certificate {
+  background: url('/VISITACION-LANDING-PAGE/img/bg.jpg') no-repeat center center;
+  background-size: cover;
+  width: 70%;
+  max-width: 900px;
+  margin: auto;
+  padding: 30px;
+  border: 8px var(--blue);
+  border-radius: 10px;
+  box-shadow: 0 5px 20px var(--blue); /* Gold glow effect */
+  text-align: center;
+}
+
+/* Certificate Text */
+.Headers {
+  font-size: 34px;
+  font-weight: bold;
+  color: #f8f9fa; /* Light color for contrast */
+  text-shadow: 2px 2px 5px rgba(255, 255, 255, 0.2);
+}
+
+.text {
+  font-size: 20px;
+  color: #eaeaea; /* Light gray */
+}
+
+.recipient-name {
+  font-size: 30px;
+  font-weight: bold;
+  color: #fff; /* White for emphasis */
+  text-shadow: 2px 2px 5px var(--blue); /* Gold shadow effect */
+}
+
+.course-name {
+  font-size: 26px;
+  font-weight: bold;
+  color: var(--blue); /* Gold color */
+}
+
+.date {
+  font-size: 20px;
+  color: #f8f9fa;
+}
+
+/* Buttons */
+.button {
+  margin-top: 20px;
+}
+
+button {
+  background: var(--blue);
+  color: #ffffff;
+  padding: 12px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: 0.3s;
+}
+
+button:hover {
+  background: var(--blue); /* Lighter gold on hover */
+}
+
+/* Name Input Modal */
+.modal {
+  display: flex;
+  position: fixed;
+  z-index: 999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background: rgba(255, 255, 255, 0.95);
+  padding: 30px;
+  border-radius: 15px;
+  text-align: center;
+  box-shadow: 0px 0px 20px var(--blue);
+}
+
+h2 {
+  color: #222;
+  font-size: 24px;
+}
+
+input {
+  width: 80%;
+  padding: 12px;
+  font-size: 16px;
+  margin: 10px 0;
+  border: 2px solid var(--blue);
+  border-radius: 5px;
+  text-align: center;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .certificate {
+    width: 90%;
+    padding: 20px;
+  }
+
+  .Headers {
+    font-size: 28px;
+  }
+
+  .recipient-name {
+    font-size: 24px;
+  }
+
+  .course-name {
+    font-size: 22px;
+  }
+
+  .text, .date {
+    font-size: 16px;
+  }
+
+  button {
+    font-size: 14px;
+    padding: 10px 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .certificate {
+    width: 95%;
+    padding: 15px;
+  }
+
+  .Headers {
+    font-size: 24px;
+  }
+
+  .recipient-name {
+    font-size: 22px;
+  }
+
+  .course-name {
+    font-size: 20px;
+  }
+
+  .text, .date {
+    font-size: 14px;
+  }
+
+  button {
+    font-size: 13px;
+    padding: 8px 15px;
+  }
+}
