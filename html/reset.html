@@ -39,7 +39,7 @@
     </div>
     <div class="actions">
       <button id="btnSubmit" class="btn" style="display:none">Set password</button>
-      <a id="backLogin" href="/index.html#login" class="btn secondary">Back to Login</a>
+      <a id="backLogin" href="/html/Login.html" class="btn secondary">Back to Login</a>
     </div>
   </div>
 
@@ -47,8 +47,7 @@
     (function(){
       function qs(k){ const u=new URL(location.href); return u.searchParams.get(k)||''; }
       function loginUrl(){
-        var path = location.pathname.replace(/\/html\/reset\.html$/, '/index.html');
-        return path + '?pwreset=1#login';
+        return location.pathname.replace(/\/html\/reset\.html$/, '/html/Login.html') + '?pwreset=1';
       }
       async function init(){
         const token = qs('token');

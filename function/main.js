@@ -31,15 +31,16 @@ btnMenu.onclick = function () {
 // Smooth Scroll with Delay (Fixed Login Button Issue)
 document.querySelectorAll('.nav-links a').forEach(link => {
     link.addEventListener("click", function (e) {
-        // Let the Login route update the hash so the overlay can open.
-        if (this.getAttribute("href") === "#login") {
+        let targetId = this.getAttribute("href") || "";
+
+        // Only smooth-scroll same-page section links.
+        if (!targetId.startsWith("#")) {
             if (NavLinks) NavLinks.classList.remove("active");
             if (btnMenu) btnMenu.classList.remove("fa-times");
             return;
         }
 
         e.preventDefault(); // Prevent default for internal links
-        let targetId = this.getAttribute("href");
         let targetSection = document.querySelector(targetId);
 
         if (targetSection) {

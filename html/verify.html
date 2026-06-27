@@ -32,7 +32,7 @@
       <div id="hint" class="muted" style="margin-top:8px"></div>
     </div>
     <div class="actions">
-      <a id="backLogin" href="/index.html#login" class="btn secondary">Back to Login</a>
+      <a id="backLogin" href="/html/Login.html" class="btn secondary">Back to Login</a>
     </div>
   </div>
 
@@ -40,8 +40,7 @@
     (function(){
       function qs(k){ const u=new URL(location.href); return u.searchParams.get(k)||''; }
       function loginUrl(){
-        var path = location.pathname.replace(/\/html\/verify\.html$/, '/index.html');
-        return path + '?verified=1#login';
+        return location.pathname.replace(/\/html\/verify\.html$/, '/html/Login.html') + '?verified=1';
       }
       async function go(){
         const token = qs('token');
