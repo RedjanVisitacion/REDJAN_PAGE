@@ -33,14 +33,6 @@ document.querySelectorAll('.nav-links a').forEach(link => {
     link.addEventListener("click", function (e) {
         let targetId = this.getAttribute("href") || "";
 
-        if (this.classList.contains("nav-login-link")) {
-            e.preventDefault();
-            window.open(targetId, "_blank", "noopener");
-            if (NavLinks) NavLinks.classList.remove("active");
-            if (btnMenu) btnMenu.classList.remove("fa-times");
-            return;
-        }
-
         // Only smooth-scroll same-page section links.
         if (!targetId.startsWith("#")) {
             if (NavLinks) NavLinks.classList.remove("active");
