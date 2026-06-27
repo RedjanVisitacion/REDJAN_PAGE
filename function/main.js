@@ -31,8 +31,10 @@ btnMenu.onclick = function () {
 // Smooth Scroll with Delay (Fixed Login Button Issue)
 document.querySelectorAll('.nav-links a').forEach(link => {
     link.addEventListener("click", function (e) {
-        // Let the Login button (with its inline onclick) handle navigation/overlay
-        if (this.classList.contains("btn")) {
+        // Let the Login route update the hash so the overlay can open.
+        if (this.getAttribute("href") === "#login") {
+            if (NavLinks) NavLinks.classList.remove("active");
+            if (btnMenu) btnMenu.classList.remove("fa-times");
             return;
         }
 
