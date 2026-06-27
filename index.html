@@ -6,9 +6,18 @@
         color: white;
     }
     /* Hash-route overlay for Login */
-    #route-login-overlay { position: fixed; inset: 0; z-index: 9999; display: none; background: #000; }
+    html.route-login,
+    html.route-login body { height: 100%; overflow: hidden; }
+    html.route-login body > :not(#route-login-overlay) { visibility: hidden; }
+    #route-login-overlay { position: fixed; inset: 0; z-index: 9999; display: none; background: #000; overflow: hidden; }
+    html.route-login #route-login-overlay { display: block; }
     #route-login-overlay iframe { width: 100%; height: 100%; border: 0; display: block; }
 </style>
+    <script>
+      if (location.hash === '#login' || location.hash === '#/login') {
+        document.documentElement.classList.add('route-login');
+      }
+    </script>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -23,7 +32,7 @@
 
 
     <!-- link file css -->
-    <link rel="stylesheet" href="css/styles.css?v=20260627a">
+    <link rel="stylesheet" href="css/styles.css?v=20260627b">
 </head>
 <body>
     <div class="header">
@@ -404,7 +413,7 @@
     <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
 
     <!-- link file JS -->
-    <script src="function/main.js?v=20260627a"></script>
+    <script src="function/main.js?v=20260627b"></script>
     <script>
       (function(){
         function updateRoute(){
@@ -414,12 +423,17 @@
           if(!overlay || !frame) return;
           var isLogin = (hash === '#login' || hash === '#/login');
           if(isLogin){
+            document.documentElement.classList.add('route-login');
             overlay.style.display = 'block';
-            // Always reload login content to reflect latest settings (e.g., dynamic background)
-            frame.src = 'html/Login.html?t=' + Date.now();
-            frame.dataset.loaded = '1';
+            if(frame.dataset.loaded !== '1'){
+              frame.src = 'html/Login.html?t=' + Date.now();
+              frame.dataset.loaded = '1';
+            }
           } else {
+            document.documentElement.classList.remove('route-login');
             overlay.style.display = 'none';
+            frame.src = 'about:blank';
+            frame.dataset.loaded = '0';
           }
         }
         window.addEventListener('hashchange', updateRoute);

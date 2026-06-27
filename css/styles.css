@@ -1337,11 +1337,19 @@ footer {
     font-family: 'Poppins', sans-serif;
 }
 
+html:has(#body),
+#body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
 #body {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
+    min-height: 100svh;
+    padding: 24px;
     background: linear-gradient(135deg, #2ecc71, #16a085);
     background-image: url('../img/bgLog.png');
     background-repeat: no-repeat;
@@ -1352,12 +1360,19 @@ footer {
 
 .wrapper {
     width: 400px;
+    max-width: min(400px, 100%);
+    max-height: calc(100svh - 48px);
+    overflow-y: auto;
+    scrollbar-width: none;
     color: white;
     padding: 30px;
     border-radius: 12px;
     text-align: center;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     backdrop-filter: blur(10px);
+}
+.wrapper::-webkit-scrollbar {
+    display: none;
 }
 
 .wrapper h1 {
