@@ -27,10 +27,8 @@ if (!$root || !$target || strpos($target, $root . DIRECTORY_SEPARATOR) !== 0 || 
 
 $publicDir = trim(str_replace('\\', '/', dirname($record['file'])), './');
 $basePath = rpsv_public_base_path();
-$baseHref = preg_replace('#/+#', '/', $basePath . '/' . ($publicDir !== '' ? $publicDir . '/' : ''));
-if ($baseHref === '') {
-    $baseHref = '/';
-}
+$baseHref = ($basePath !== '' ? $basePath : '') . '/' . ($publicDir !== '' ? $publicDir . '/' : '');
+$baseHref = preg_replace('#(?<!:)/+#', '/', $baseHref);
 
 $html = file_get_contents($target);
 if ($html === false) {

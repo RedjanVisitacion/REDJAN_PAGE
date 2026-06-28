@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="/css/styles.css">
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
   <link rel="icon" href="/img/icon.png">
   <title>REDJAN Page â€“ Login & Register</title>
@@ -13,8 +13,130 @@
       height: 100%;
       overflow: hidden;
     }
+    html:has(#body),
+    #body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+    #body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100svh;
+      padding: 24px;
+      background: #111 url("/img/bgLog.png") center center / cover no-repeat fixed;
+      font-family: 'Inter', 'Poppins', Arial, sans-serif;
+    }
     .hidden {
       display: none !important;
+    }
+    .wrapper {
+      width: 400px;
+      max-width: min(400px, 100%);
+      max-height: calc(100svh - 48px);
+      overflow-y: auto;
+      scrollbar-width: none;
+      color: white;
+      padding: 30px;
+      border-radius: 12px;
+      text-align: center;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      backdrop-filter: blur(10px);
+    }
+    .wrapper::-webkit-scrollbar {
+      display: none;
+    }
+    .wrapper h1 {
+      font-size: 30px;
+      margin-bottom: 20px;
+    }
+    .login,
+    .register {
+      color: white;
+      font-family: Georgia, 'Times New Roman', Times, serif;
+    }
+    .wrapper .input-box {
+      position: relative;
+      width: 100%;
+      margin: 20px 0;
+    }
+    .input-box input {
+      width: 100%;
+      height: 50px;
+      background: transparent;
+      border: 2px solid rgba(255, 255, 255, 0.5);
+      border-radius: 30px;
+      font-size: 16px;
+      color: white;
+      padding: 15px 45px 15px 20px;
+      transition: 0.3s;
+    }
+    .input-box input::placeholder {
+      color: rgba(255, 255, 255, 0.7);
+    }
+    .input-box input:focus {
+      border-color: white;
+      box-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+      outline: none;
+    }
+    .input-box i {
+      position: absolute;
+      right: 23px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 20px;
+      color: white;
+    }
+    .remember-forgot {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      font-size: 14px;
+      margin: 15px 0;
+      flex-wrap: wrap;
+    }
+    .remember-forgot label {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      white-space: nowrap;
+    }
+    .remember-forgot a {
+      color: skyblue;
+      text-decoration: none;
+    }
+    .remember-forgot a:hover {
+      text-decoration: underline;
+    }
+    .wrapper .btn {
+      width: 100%;
+      height: 50px;
+      background: #d42744;
+      border: none;
+      border-radius: 30px;
+      font-size: 18px;
+      font-weight: bold;
+      color: white;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .wrapper .btn:hover {
+      background: skyblue;
+      box-shadow: 0 0 8px rgba(255, 165, 0, 0.7);
+    }
+    .register-link {
+      margin-top: 20px;
+      font-size: 14px;
+    }
+    .register-link a {
+      color: #f1c40f;
+      font-weight: bold;
+      text-decoration: none;
+    }
+    .register-link a:hover {
+      text-decoration: underline;
     }
     .modal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.45);display:flex;align-items:center;justify-content:center;z-index:50}
     .modal-card{width:92%;max-width:440px;background:#fff;border-radius:12px;box-shadow:0 10px 25px rgba(0,0,0,.2);overflow:hidden}
@@ -25,6 +147,15 @@
     .input{width:100%;padding:10px 12px;border:1px solid #e5e7eb;border-radius:8px;font-size:14px}
     .btn-sm{padding:8px 14px;border-radius:8px;border:none;cursor:pointer;background:#dc2626;color:#fff}
     .btn-secondary{background:#f3f4f6;color:#111}
+    @media (max-width: 450px) {
+      #body {
+        padding: 18px;
+      }
+      .wrapper {
+        width: 100%;
+        padding: 20px;
+      }
+    }
   </style>
 </head>
 <body id="body">
