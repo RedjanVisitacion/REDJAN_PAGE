@@ -32,15 +32,27 @@
       <div id="hint" class="muted" style="margin-top:8px"></div>
     </div>
     <div class="actions">
-      <a id="backLogin" href="/html/Login.html" class="btn secondary">Back to Login</a>
+      <a id="backLogin" href="../c/6fa3f52ec-a830-83ec-aeb0-a1b2fb7fd22d" class="btn secondary">Back to Login</a>
     </div>
   </div>
 
   <script>
     (function(){
       function qs(k){ const u=new URL(location.href); return u.searchParams.get(k)||''; }
+      function routeUrl(id, query){
+        var path = location.pathname.replace(/\\/g, '/');
+        var prefix = '';
+        var cIndex = path.lastIndexOf('/c/');
+        if (cIndex >= 0) {
+          prefix = path.slice(0, cIndex + 3);
+        } else {
+          var htmlIndex = path.lastIndexOf('/html/');
+          prefix = htmlIndex >= 0 ? path.slice(0, htmlIndex + 1) + 'c/' : path.replace(/[^\/]*$/, '') + 'c/';
+        }
+        return prefix + id + (query ? '?' + query : '');
+      }
       function loginUrl(){
-        return location.pathname.replace(/\/html\/verify\.html$/, '/html/Login.html') + '?verified=1';
+        return routeUrl('6fa3f52ec-a830-83ec-aeb0-a1b2fb7fd22d', 'verified=1');
       }
       async function go(){
         const token = qs('token');

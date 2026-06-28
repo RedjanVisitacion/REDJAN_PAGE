@@ -1,4 +1,5 @@
-﻿<?php
+<?php
+require_once __DIR__ . '/route_helpers.php';
 $secure = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off');
 $domain = $_SERVER['HTTP_HOST'] ?? '';
 @session_name('RPSVSESSID');
@@ -15,7 +16,7 @@ if (PHP_VERSION_ID >= 70300) {
   session_set_cookie_params(86400 * 7, '/; samesite=Lax', $domain, $secure, true);
 }
 session_start();
-if (!isset($_SESSION['user_id'])) { header('Location: ../html/Login.html'); exit; }
+if (!isset($_SESSION['user_id'])) { header('Location: ' . rpsv_route_path('login')); exit; }
 $username = htmlspecialchars($_SESSION['username'] ?? '', ENT_QUOTES, 'UTF-8');
 $role = htmlspecialchars($_SESSION['role'] ?? 'user', ENT_QUOTES, 'UTF-8');
 ?>

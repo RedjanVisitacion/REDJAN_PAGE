@@ -1,0 +1,6 @@
+RewriteEngine On
+RewriteRule ^html/Login\.html$ c/6fa3f52ec-a830-83ec-aeb0-a1b2fb7fd22d [R=302,L,QSA]
+RewriteRule ^html/Certificate\.html$ c/b8d4f10a-19e6-4f43-965a-26f7b0b7f4c9 [R=302,L,QSA]
+RewriteRule ^html/verify\.html$ c/8c9e7024-bb28-4aa5-9f41-1976d8a55d50 [R=302,L,QSA]
+RewriteRule ^html/reset\.html$ c/3d7bd58f-6c3d-4478-8325-a977d9d679f4 [R=302,L,QSA]
+RewriteRule ^c/([A-Za-z0-9-]+)/?$ php/route.php?route=$1 [L,QSA]

@@ -117,6 +117,29 @@
     }
 
     // Helpers
+    function routeUrl(name, query){
+      var ids = {
+        login: '6fa3f52ec-a830-83ec-aeb0-a1b2fb7fd22d',
+        verify: '8c9e7024-bb28-4aa5-9f41-1976d8a55d50',
+        reset: '3d7bd58f-6c3d-4478-8325-a977d9d679f4'
+      };
+      var id = ids[name] || name;
+      var path = location.pathname.replace(/\\/g, '/');
+      var prefix = '';
+      var cIndex = path.lastIndexOf('/c/');
+      if (cIndex >= 0) {
+        prefix = path.slice(0, cIndex + 3);
+      } else {
+        var htmlIndex = path.lastIndexOf('/html/');
+        prefix = htmlIndex >= 0 ? path.slice(0, htmlIndex + 1) + 'c/' : path.replace(/[^\/]*$/, '') + 'c/';
+      }
+      return prefix + id + (query ? '?' + query : '');
+    }
+    (function canonicalizeLoginRoute(){
+      if (/\/html\/Login\.html$/i.test(location.pathname)) {
+        location.replace(routeUrl('login', location.search ? location.search.slice(1) : ''));
+      }
+    })();
     function safeParseJSON(txt){
       try { return JSON.parse(txt); } catch(e){}
       var cut = txt.indexOf('}{');
@@ -157,9 +180,7 @@
           const vTok = res.verify_token || '';
           if (vUrl) { window.top.location.href = vUrl; return; }
           if (vTok) {
-            var base = 'verify.html';
-            if (!/\/html\//.test(location.pathname)) { base = '../html/verify.html'; }
-            window.top.location.href = base + '?token=' + encodeURIComponent(vTok);
+            window.top.location.href = routeUrl('verify', 'token=' + encodeURIComponent(vTok));
             return;
           }
           openVerify(email);

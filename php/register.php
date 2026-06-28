@@ -15,6 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     echo json_encode(['success' => false, 'message' => 'Invalid request.']);
     exit;
 }
+require_once __DIR__ . '/route_helpers.php';
 require __DIR__ . '/db.php';
 $conn->query("CREATE TABLE IF NOT EXISTS users (
   id INT AUTO_INCREMENT PRIMARY KEY,
@@ -93,12 +94,7 @@ if (!$stmt) {
 $stmt->bind_param('ssssssss', $username, $email, $hash, $password, $role, $code, $token, $expires);
 $ok = $stmt->execute();
 if ($ok) {
-    $host = $_SERVER['HTTP_HOST'] ?? 'localhost';
-    $scheme = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https' : 'http';
-    $scriptName = $_SERVER['SCRIPT_NAME'] ?? '/php/register.php';
-    $dir = rtrim(str_replace('\\','/', dirname($scriptName)), '/');
-    $verifyPath = preg_replace('#/+#','/',$dir . '/../html/verify.html');
-    $link = $scheme . '://' . $host . $verifyPath . '?token=' . urlencode($token);
+    $link = rpsv_route_url('verify', ['token' => $token]);
     $emailSent = false; $mailErr = null;
     $mailerCfg = dirname(__DIR__) . '/backend/mailer/mailer_config.php';
     if (is_file($mailerCfg)) {

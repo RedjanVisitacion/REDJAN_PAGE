@@ -15,7 +15,7 @@
 </style>
     <script>
       if (location.hash === '#login' || location.hash === '#/login') {
-        document.documentElement.classList.add('route-login');
+        location.replace('c/6fa3f52ec-a830-83ec-aeb0-a1b2fb7fd22d');
       }
     </script>
     <meta charset="UTF-8">
@@ -49,7 +49,7 @@
                     <a href="#Contacts">Contacts</a>
                     
 
-                    <a href="/html/Login.html" class="nav-login-link" target="_blank" rel="noopener noreferrer">Login</a>
+                    <a href="c/6fa3f52ec-a830-83ec-aeb0-a1b2fb7fd22d" class="nav-login-link">Login</a>
                 </div>    
                 
             </nav>
@@ -80,7 +80,7 @@
                     <button class="cv-button">View CV</button>
                 </a>
 
-                <a href="html/Certificate.html">
+                <a href="c/b8d4f10a-19e6-4f43-965a-26f7b0b7f4c9">
                     <button class="cv-button">Certificate</button>
                 </a>
 
@@ -423,12 +423,8 @@
           if(!overlay || !frame) return;
           var isLogin = (hash === '#login' || hash === '#/login');
           if(isLogin){
-            document.documentElement.classList.add('route-login');
-            overlay.style.display = 'block';
-            if(frame.dataset.loaded !== '1'){
-              frame.src = 'html/Login.html?t=' + Date.now();
-              frame.dataset.loaded = '1';
-            }
+            location.replace('c/6fa3f52ec-a830-83ec-aeb0-a1b2fb7fd22d');
+            return;
           } else {
             document.documentElement.classList.remove('route-login');
             overlay.style.display = 'none';

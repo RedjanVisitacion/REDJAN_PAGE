@@ -12,6 +12,7 @@ register_shutdown_function(function(){
 header('Content-Type: application/json');
 header('Cache-Control: no-store');
 
+require_once __DIR__ . '/route_helpers.php';
 require __DIR__ . '/db.php';
 @$conn->query("ALTER TABLE users ADD COLUMN password_reset_token VARCHAR(64) DEFAULT NULL AFTER password_plain");
 @$conn->query("ALTER TABLE users ADD COLUMN password_reset_expires DATETIME DEFAULT NULL AFTER password_reset_token");
@@ -21,12 +22,7 @@ $action = $_GET['action'] ?? $_POST['action'] ?? '';
 $now = date('Y-m-d H:i:s');
 
 function build_reset_link($token){
-    $host = $_SERVER['HTTP_HOST'] ?? 'localhost';
-    $scheme = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https' : 'http';
-    $scriptName = $_SERVER['SCRIPT_NAME'] ?? '/php/password_reset.php';
-    $dir = rtrim(str_replace('\\','/', dirname($scriptName)), '/');
-    $resetPath = preg_replace('#/+#','/',$dir . '/../html/reset.html');
-    return $scheme . '://' . $host . $resetPath . '?token=' . urlencode($token);
+    return rpsv_route_url('reset', ['token' => $token]);
 }
 
 if ($method === 'POST' && $action === 'request') {
