@@ -79,17 +79,21 @@ if (document.querySelector('.swip-test-imo')) {
 
 // Add class active to link in menu by scroll
 let links = document.querySelectorAll('.nav-links a');
-let sections = document.querySelectorAll('section');
 
 function activeMenu() {
-    let len = sections.length;
-    while (--len && window.scrollY + 100 < sections[len].offsetTop) {}
+    var currentHref = '#home';
+    links.forEach(function (link) {
+        var href = link.getAttribute('href') || '';
+        if (!href.startsWith('#')) return;
+        var section = document.querySelector(href);
+        if (section && window.scrollY + 120 >= section.offsetTop) {
+            currentHref = href;
+        }
+    });
     links.forEach(ltx => ltx.classList.remove("active"));
-    if (links[len]) {
-        links[len].classList.add("active");
-    } else if (links[0]) {
-        links[0].classList.add("active");
-    }
+    links.forEach(function (link) {
+        if (link.getAttribute('href') === currentHref) link.classList.add('active');
+    });
 }
 
 // Load site config (home bg) and apply to hero
@@ -246,7 +250,7 @@ function initHeroSlideshow(customImgs){
 function initTypedRoles(){
   var el = document.getElementById('typed');
   if(!el) return;
-  var roles = ['A BSIT Student','Editor','Programmer','Photographer'];
+  var roles = ['BSIT Student', 'Full-Stack Web Developer', 'IoT Enthusiast', 'PHP & MySQL Developer', 'ESP32 Builder'];
   var i = 0, j = 0, typing = true;
   function tick(){
     var word = roles[i];
@@ -264,9 +268,10 @@ function initTypedRoles(){
 
 // Animate counters and progress bars
 function initCountersAndProgress(){
-  var target = document.querySelector('.promo-number') || document.getElementById('Service');
+  var target = document.getElementById('skills') || document.querySelector('.stats-grid');
   var bars = document.querySelectorAll('.progress .progress-bar');
-  if(!target && !bars.length) return;
+  var stats = document.querySelectorAll('.stat-value');
+  if(!target && !bars.length && !stats.length) return;
   var done = false;
   var io = new IntersectionObserver(function(entries){
     entries.forEach(function(e){
@@ -275,10 +280,11 @@ function initCountersAndProgress(){
   }, {threshold: 0.3});
   io.observe(target || document.body);
   function animate(){
-    document.querySelectorAll('.promo-number .small-box span').forEach(function(span){
-      var to = parseInt(span.textContent, 10); if(isNaN(to)) return;
+    stats.forEach(function(span){
+      var to = parseInt(span.getAttribute('data-count') || span.textContent, 10); if(isNaN(to)) return;
+      var suffix = span.getAttribute('data-suffix') || '';
       var startTs = null, dur = 1200 + to * 50;
-      function step(ts){ if(!startTs) startTs = ts; var p = Math.min((ts - startTs)/dur, 1); var val = Math.floor(p * to); span.textContent = val; if(p < 1) requestAnimationFrame(step); }
+      function step(ts){ if(!startTs) startTs = ts; var p = Math.min((ts - startTs)/dur, 1); var val = Math.floor(p * to); span.textContent = val + suffix; if(p < 1) requestAnimationFrame(step); }
       requestAnimationFrame(step);
     });
     bars.forEach(function(bar){
@@ -292,7 +298,23 @@ function initCountersAndProgress(){
 
 // Scroll reveal effects
 function initReveal(){
-  var selector = ['section .container','.page-card','.audio-item','.contact-form','.small-box','.skill-with-social','.section-description'].join(',');
+  var selector = [
+    '.portfolio-section .section-heading',
+    '.about-copy',
+    '.about-panel',
+    '.metric-card',
+    '.skill-list',
+    '.tech-card',
+    '.service-card',
+    '.github-profile-card',
+    '.github-dashboard',
+    '.project-card',
+    '.timeline-item',
+    '.cert-card',
+    '.blog-card',
+    '.contact-info',
+    '.contact-form'
+  ].join(',');
   var list = Array.prototype.slice.call(document.querySelectorAll(selector));
   if(!list.length) return;
   list.forEach(function(el){ el.classList.add('reveal'); });
@@ -300,17 +322,6 @@ function initReveal(){
     entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('show'); io.unobserve(e.target); } });
   }, {threshold: 0.15});
   list.forEach(function(el){ io.observe(el); });
-  var gal = document.getElementById('photoGallery');
-  if(gal){
-    var mo = new MutationObserver(function(muts){
-      muts.forEach(function(m){
-        m.addedNodes.forEach(function(n){
-          if(n.classList && n.classList.contains('gallery-item')){ n.classList.add('reveal'); io.observe(n); }
-        });
-      });
-    });
-    mo.observe(gal, {childList: true});
-  }
 }
 
 function initContactGate(){
@@ -363,31 +374,3 @@ function initContactGate(){
   form.addEventListener('submit', handleSend);
 }
 
-(function(){
-  async function fetchFirstOk(urls, opts){
-    for (var i=0;i<urls.length;i++){
-      try{ var r = await fetch(urls[i], opts); if(r.ok) return r; }catch(e){}
-    }
-    throw new Error('all failed');
-  }
-  function esc(s){ return String(s||'').replace(/[&<>"]/g, function(c){ return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]); }); }
-  async function loadGallery(){
-    var wrap = document.getElementById('photoGallery');
-    if(!wrap) return;
-    wrap.innerHTML = '<div style="text-align:center;color:#666;">Loading gallery...</div>';
-    var bases = ['php/gallery_api.php','/php/gallery_api.php','/VISITACION-LANDING-PAGE/php/gallery_api.php'];
-    var candidates = bases.map(function(u){ return u + '?action=list&t=' + Date.now(); });
-    try{
-      var res = await fetchFirstOk(candidates, { credentials: 'same-origin', cache: 'no-store' });
-      var data = await res.json();
-      var items = (data && data.images) || [];
-      // Ensure hidden images are not shown on the homepage
-      items = items.filter(function(it){ return !parseInt((it && it.is_hidden) || 0, 10); });
-      if (!items.length){ wrap.innerHTML = '<div style="text-align:center;color:#666;">No photos yet.</div>'; return; }
-      wrap.innerHTML = items.map(function(it){ var url = esc(it.url||''); return '<div class="gallery-item" onclick="openLightbox(\''+url+'\', \'image\')"><img src="'+url+'" alt="Photo"></div>'; }).join('');
-    }catch(e){
-      wrap.innerHTML = '<div style="text-align:center;color:#c00;">Failed to load gallery.</div>';
-    }
-  }
-  if (document.readyState === 'loading') { document.addEventListener('DOMContentLoaded', loadGallery); } else { loadGallery(); }
-})();

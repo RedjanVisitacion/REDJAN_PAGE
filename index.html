@@ -21,352 +21,478 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RPSV_CODES</title>
+    <meta name="description" content="Portfolio of Redjan Phil S. Visitacion, BSIT student, full-stack web developer, and IoT enthusiast.">
+    <title>Redjan Phil S. Visitacion | Developer Portfolio</title>
     <link rel="icon" href="img/icon.png">
-    <!-- link file icon -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-
-    <!-- Link Swiper's CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
-
-
-    <!-- link file css -->
     <link rel="stylesheet" href="css/styles.css?v=20260627b">
+    <link rel="stylesheet" href="css/portfolio.css?v=20260628a">
 </head>
 <body>
     <div class="header">
         <div class="contanier">
-            <i id="btnMenu" class="fa-solid fa-bars"></i>
+            <i id="btnMenu" class="fa-solid fa-bars" aria-label="Open menu"></i>
             <nav>
-                <img src="img/logo.png" alt="">
+                <a class="brand-link" href="#home" aria-label="Redjan Phil home">
+                    <img src="img/logo.png" alt="Redjan Phil logo">
+                </a>
                 <div class="nav-links">
                     <a href="#home" class="active">Home</a>
                     <a href="#about">About</a>
-                    <a href="#Service">Services</a>
-                    <a href="#Blog">Blog</a>
-                    <a href="#Pages">Pages</a>
-                    <a href="#Contacts">Contacts</a>
-                    
-
+                    <a href="#skills">Skills</a>
+                    <a href="#projects">Projects</a>
+                    <a href="#certifications">Certifications</a>
+                    <a href="#Contacts">Contact</a>
                     <a href="c/6fa3f52ec-a830-83ec-aeb0-a1b2fb7fd22d/" class="nav-login-link" target="_blank" rel="noopener noreferrer">Login</a>
-                </div>    
-                
+                </div>
             </nav>
         </div>
     </div>
 
-    <!-- start Home  -->
-
-    
-
-    <section class="home" id="home">
-        <div class="hero-slides"></div>
-        <div class="contanier">
-            <div class="text">
-                <p>Hello <span class="sep"></span> I am</p>
+    <main>
+        <section class="home portfolio-hero" id="home" aria-label="Portfolio hero">
+            <img class="hero-background" src="img/bg.jpg" alt="">
+            <div class="hero-shade"></div>
+            <div class="contanier hero-content">
+                <img class="hero-avatar" src="img/profile.jpg" alt="Redjan Phil S. Visitacion">
+                <p class="eyebrow">Hello, I'm</p>
                 <h1>Redjan Phil S. Visitacion</h1>
                 <p class="typed-roles"><span id="typed"></span><span class="cursor">|</span></p>
-                
-                <!--
-                <ul>
-                    <li>A BSIT Student</li>
-                    <li>Editor</li>
-                    <li>Programmer</li>
-                    <li>Photographer</li>
-                </ul>
-                 -->
-                <a href="https://redjanvisitacion.github.io/Curriculum-Vitae/" target="_blank">
-                    <button class="cv-button">View CV</button>
-                </a>
-
-                <a href="c/b8d4f10a-19e6-4f43-965a-26f7b0b7f4c9/">
-                    <button class="cv-button">Certificate</button>
-                </a>
-
-                <a href="https://redjanvisitacion.github.io/RPSV-GAMES/main.html">
-                    <button class="cv-button">Play</button>
-                </a>
-
-
-                <a href="https://redjanvisitacion.github.io/RPSV_AI/">
-                    <button id="cv-button" class="cv-button">AI</button>
-                </a>
-            
-
-            </div>
-        </div>
-    </section>
-
-
-    <!-- start About -->
-
-    <section class="about" id="about">
-        <div class="sec-top">
-            <span>about</span>
-        </div>
-
-        <div class="contanier">
-
-            <div class="content">
-                <div class="text">
-                    <h3>About Me</h3>
-                    <span>I am BSIT student Creative Designer Photographer and Developer</span>
-                    <p>Self-motivation is the force that keeps pushing us to go on – it's our internal drive to achieve, produce, develop, and keep moving forward. When you think you're ready to quit something, or you just don't know how to start, your self-motivation is what pushes you to go on. Most good programmers do programming not because they expect to get paid or get adulation by the public, but because it is fun to program.</p>
-                           <img src="img/sign.png" alt="">
-
+                <p class="hero-summary">
+                    I develop modern web applications, IoT systems, and automation solutions using HTML, CSS,
+                    JavaScript, PHP, Python, ESP32, and MySQL.
+                </p>
+                <div class="hero-actions" aria-label="Primary portfolio actions">
+                    <a class="btn btn-primary" href="https://redjanvisitacion.github.io/Curriculum-Vitae/" target="_blank" rel="noopener noreferrer">
+                        <i class="fa-solid fa-file-arrow-down"></i>
+                        <span>Download Resume</span>
+                    </a>
+                    <a class="btn btn-secondary" href="#projects">
+                        <i class="fa-solid fa-code-branch"></i>
+                        <span>View Projects</span>
+                    </a>
+                    <a class="btn btn-outline" href="https://github.com/RedjanVisitacion" target="_blank" rel="noopener noreferrer">
+                        <i class="fa-brands fa-github"></i>
+                        <span>GitHub</span>
+                    </a>
+                    <a class="btn btn-ghost" href="#Contacts">
+                        <i class="fa-solid fa-paper-plane"></i>
+                        <span>Contact Me</span>
+                    </a>
                 </div>
-                <div class="div-img">
-                    <img src="img/about.png" alt="">
+                <div class="hero-socials" aria-label="Social links">
+                    <a href="https://github.com/RedjanVisitacion" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                        <i class="fa-brands fa-github"></i>
+                    </a>
+                    <a href="https://web.facebook.com/zedjan.zedjan.3" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                        <i class="fa-brands fa-facebook-f"></i>
+                    </a>
+                    <a href="https://www.instagram.com/redjanphilsvisitacion?igsh=MXF2c2t5ZGttanJjeA==" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
+                    <a href="https://www.tiktok.com/@rpsv_codes?_t=8k15sq4ZSew&_r=1" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
+                        <i class="fa-brands fa-tiktok"></i>
+                    </a>
                 </div>
+                <a class="scroll-indicator" href="#about" aria-label="Scroll to about">
+                    <span></span>
+                </a>
             </div>
-            
- <!-- start Service -->
+        </section>
 
-<section class="Service" id="Service">
-    <div class="sec-top">
-        <span>Services</span>
-    </div>
-
-    <div class="cont2">
-
-        <!-- Promo Number Section -->
-        <div class="promo-number">
-            <div class="small-box bord-rig bord-botm">
-                <span>0</span>
-                <p>All Ex</p>
-            </div>
-
-            <div class="small-box bord-botm">
-                <span>3</span>
-                <p>Years Experience</p>
-            </div>
-
-            <div class="small-box bord-rig">
-                <span>0</span>
-                <p>Girl Friend</p>
-            </div>
-
-            <div class="small-box">
-                <span>1</span>
-                <p>NCII holder</p>
-            </div>
-        </div>
-
-        <!-- Skills Section -->
-        
-        <div class="skill-with-social">
-            <div class="skill-list">
-                <h3 class="heading">My Skills</h3>
-
-                <div class="single-skill">
-                    <div class="skill-title">
-                        <h3>Being Active on Social Media</h3>
-                        <span>95%</span>
+        <section class="about portfolio-section" id="about">
+            <div class="contanier">
+                <div class="section-heading">
+                    <span>About</span>
+                    <h2>Who I Am</h2>
+                    <p>BSIT Student, Full-Stack Web Developer, and IoT enthusiast building practical systems for real users.</p>
+                </div>
+                <div class="about-grid">
+                    <div class="about-copy">
+                        <h3>Redjan Phil S. Visitacion</h3>
+                        <p>
+                            I am a technology-focused BSIT student with hands-on interest in web development,
+                            embedded systems, automation, and clean interface design. My goal is to grow into a
+                            dependable software engineer who can build complete solutions from user experience to
+                            backend logic and hardware integration.
+                        </p>
+                        <p>
+                            I enjoy turning ideas into usable projects, especially systems that combine PHP,
+                            MySQL, JavaScript, Python, ESP32, and practical troubleshooting skills.
+                        </p>
+                        <div class="focus-list">
+                            <span>Web Development</span>
+                            <span>Internet of Things</span>
+                            <span>ESP32 Development</span>
+                            <span>Embedded Systems</span>
+                            <span>UI/UX Design</span>
+                            <span>Photography</span>
+                        </div>
                     </div>
-                    <div class="progress">
-                        <div class="progress-bar" style="width: 95%;"></div>
+                    <div class="about-panel">
+                        <div>
+                            <i class="fa-solid fa-graduation-cap"></i>
+                            <h4>Education</h4>
+                            <p>Bachelor of Science in Information Technology student.</p>
+                        </div>
+                        <div>
+                            <i class="fa-solid fa-bullseye"></i>
+                            <h4>Career Goal</h4>
+                            <p>Ready for internships, junior software roles, capstone work, and freelance projects.</p>
+                        </div>
+                        <div>
+                            <i class="fa-solid fa-microchip"></i>
+                            <h4>Technical Direction</h4>
+                            <p>Full-stack systems, IoT automation, databases, and responsive digital products.</p>
+                        </div>
                     </div>
                 </div>
+            </div>
+        </section>
 
-                <div class="single-skill">
-                    <div class="skill-title">
-                        <h3>Video Editor</h3>
-                        <span>40%</span>
-                    </div>
-                    <div class="progress">
-                        <div class="progress-bar" style="width: 40%;"></div>
-                    </div>
+        <section class="skills-section portfolio-section" id="skills">
+            <div class="contanier">
+                <div class="section-heading">
+                    <span>Skills</span>
+                    <h2>Technical Strengths</h2>
+                    <p>Focused on practical technologies for web apps, database-backed systems, and IoT prototypes.</p>
                 </div>
 
-                <div class="single-skill">
-                    <div class="skill-title">
-                        <h3>Programmer</h3>
-                        <span>50%</span>
+                <div class="stats-grid">
+                    <div class="metric-card">
+                        <strong class="stat-value" data-count="12" data-suffix="+">0</strong>
+                        <span>Projects Completed</span>
                     </div>
-                    <div class="progress">
-                        <div class="progress-bar" style="width: 50%;"></div>
+                    <div class="metric-card">
+                        <strong class="stat-value" data-count="3" data-suffix="+">0</strong>
+                        <span>Years Coding</span>
+                    </div>
+                    <div class="metric-card">
+                        <strong class="stat-value" data-count="1" data-suffix="+">0</strong>
+                        <span>Certificates Earned</span>
+                    </div>
+                    <div class="metric-card">
+                        <strong class="stat-value" data-count="5" data-suffix="+">0</strong>
+                        <span>IoT Projects</span>
                     </div>
                 </div>
 
-                <div class="single-skill">
-                    <div class="skill-title">
-                        <h3>Photographer</h3>
-                        <span>70%</span>
+                <div class="skills-layout">
+                    <div class="skill-list">
+                        <div class="skill-row">
+                            <div><span>HTML, CSS, JavaScript</span><strong>90%</strong></div>
+                            <div class="progress"><div class="progress-bar" style="width: 90%;"></div></div>
+                        </div>
+                        <div class="skill-row">
+                            <div><span>PHP & MySQL</span><strong>82%</strong></div>
+                            <div class="progress"><div class="progress-bar" style="width: 82%;"></div></div>
+                        </div>
+                        <div class="skill-row">
+                            <div><span>Python Programming</span><strong>76%</strong></div>
+                            <div class="progress"><div class="progress-bar" style="width: 76%;"></div></div>
+                        </div>
+                        <div class="skill-row">
+                            <div><span>ESP32 & Arduino</span><strong>78%</strong></div>
+                            <div class="progress"><div class="progress-bar" style="width: 78%;"></div></div>
+                        </div>
                     </div>
-                    <div class="progress">
-                        <div class="progress-bar" style="width: 70%;"></div>
+                    <div class="tech-grid" aria-label="Technology stack">
+                        <div class="tech-card"><i class="fa-brands fa-html5"></i><span>HTML</span></div>
+                        <div class="tech-card"><i class="fa-brands fa-css3-alt"></i><span>CSS</span></div>
+                        <div class="tech-card"><i class="fa-brands fa-js"></i><span>JavaScript</span></div>
+                        <div class="tech-card"><i class="fa-brands fa-php"></i><span>PHP</span></div>
+                        <div class="tech-card"><i class="fa-brands fa-python"></i><span>Python</span></div>
+                        <div class="tech-card"><i class="fa-solid fa-database"></i><span>MySQL</span></div>
+                        <div class="tech-card"><i class="fa-brands fa-bootstrap"></i><span>Bootstrap</span></div>
+                        <div class="tech-card"><i class="fa-brands fa-git-alt"></i><span>Git</span></div>
+                        <div class="tech-card"><i class="fa-brands fa-github"></i><span>GitHub</span></div>
+                        <div class="tech-card"><i class="fa-solid fa-fire"></i><span>Firebase</span></div>
+                        <div class="tech-card"><i class="fa-solid fa-microchip"></i><span>ESP32</span></div>
+                        <div class="tech-card"><i class="fa-solid fa-screwdriver-wrench"></i><span>Troubleshooting</span></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="services-section portfolio-section" id="services">
+            <div class="contanier">
+                <div class="section-heading">
+                    <span>Services</span>
+                    <h2>What I Can Do</h2>
+                    <p>Support for student projects, small business systems, prototypes, and early product ideas.</p>
+                </div>
+                <div class="services-grid">
+                    <article class="service-card">
+                        <i class="fa-solid fa-window-restore"></i>
+                        <h3>Web Development</h3>
+                        <p>Responsive websites and dashboards using HTML, CSS, JavaScript, PHP, and MySQL.</p>
+                    </article>
+                    <article class="service-card">
+                        <i class="fa-solid fa-microchip"></i>
+                        <h3>IoT Development</h3>
+                        <p>ESP32 and Arduino prototypes for monitoring, automation, and sensor-based systems.</p>
+                    </article>
+                    <article class="service-card">
+                        <i class="fa-solid fa-pen-ruler"></i>
+                        <h3>UI/UX Design</h3>
+                        <p>Clean interface layouts focused on readability, task flow, and mobile usability.</p>
+                    </article>
+                    <article class="service-card">
+                        <i class="fa-solid fa-server"></i>
+                        <h3>System Development</h3>
+                        <p>Database-backed school, barangay, and management systems with practical admin tools.</p>
+                    </article>
+                    <article class="service-card">
+                        <i class="fa-solid fa-headset"></i>
+                        <h3>Technical Support</h3>
+                        <p>Computer troubleshooting, setup assistance, and basic network support.</p>
+                    </article>
+                    <article class="service-card">
+                        <i class="fa-solid fa-gears"></i>
+                        <h3>Automation Solutions</h3>
+                        <p>Scripts and connected devices that reduce repetitive tasks and improve workflows.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="github-showcase portfolio-section" id="projects">
+            <div class="contanier">
+                <div class="section-heading">
+                    <span>GitHub Projects</span>
+                    <h2>Repository-Powered Portfolio</h2>
+                    <p>Projects are loaded dynamically from my public GitHub repositories and sorted by activity, demos, and repository signals.</p>
+                </div>
+
+                <div class="github-layout">
+                    <aside class="github-profile-card" aria-label="GitHub profile card">
+                        <img id="githubAvatar" src="img/profile.jpg" alt="Redjan Phil S. Visitacion profile picture">
+                        <h3 id="githubName">Redjan Phil S. Visitacion</h3>
+                        <p class="github-username">@RedjanVisitacion</p>
+                        <p id="githubBio">BSIT Student, Full-Stack Web Developer, and IoT enthusiast building web systems and automation projects.</p>
+                        <a class="btn btn-primary" href="https://github.com/RedjanVisitacion" target="_blank" rel="noopener noreferrer">
+                            <i class="fa-brands fa-github"></i>
+                            <span>Follow on GitHub</span>
+                        </a>
+                    </aside>
+
+                    <div class="github-dashboard" aria-label="GitHub profile statistics">
+                        <div class="github-stat">
+                            <strong id="githubRepoCount">--</strong>
+                            <span>Public Repositories</span>
+                        </div>
+                        <div class="github-stat">
+                            <strong id="githubContributionCount">--</strong>
+                            <span>Total Contributions</span>
+                        </div>
+                        <div class="github-stat">
+                            <strong id="githubStarsCount">--</strong>
+                            <span>GitHub Stars</span>
+                        </div>
+                        <div class="github-stat">
+                            <strong id="githubUpdatedAt">--</strong>
+                            <span>Latest Repository Update</span>
+                        </div>
+                        <div class="language-dashboard">
+                            <h3>Top Languages</h3>
+                            <div id="githubTopLanguages" class="language-pills">
+                                <span>Loading...</span>
+                            </div>
+                        </div>
+                        <a class="profile-link" href="https://github.com/RedjanVisitacion" target="_blank" rel="noopener noreferrer">
+                            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                            <span>GitHub Profile Link</span>
+                        </a>
                     </div>
                 </div>
 
+                <div id="githubProjects" class="projects-grid" aria-live="polite">
+                    <article class="project-card skeleton-card">
+                        <div class="project-thumb"></div>
+                        <div class="project-body">
+                            <span></span>
+                            <h3>Loading GitHub projects...</h3>
+                            <p>Fetching repositories from GitHub.</p>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
 
+        <section class="timeline-section portfolio-section" id="experience">
+            <div class="contanier">
+                <div class="section-heading">
+                    <span>Experience</span>
+                    <h2>Growth Timeline</h2>
+                    <p>Milestones that show my path from technical learning to practical system building.</p>
+                </div>
+                <div class="timeline">
+                    <article class="timeline-item">
+                        <span>Education</span>
+                        <h3>BSIT Student</h3>
+                        <p>Building a foundation in programming, databases, networking, and systems analysis.</p>
+                    </article>
+                    <article class="timeline-item">
+                        <span>Certification</span>
+                        <h3>NCII Holder</h3>
+                        <p>Validated practical technical skills and readiness for hands-on technology work.</p>
+                    </article>
+                    <article class="timeline-item">
+                        <span>Capstone</span>
+                        <h3>IoT & System Projects</h3>
+                        <p>Exploring automation, sensor monitoring, and web dashboards for connected devices.</p>
+                    </article>
+                    <article class="timeline-item">
+                        <span>Portfolio</span>
+                        <h3>Personal & Freelance Projects</h3>
+                        <p>Developing websites, tools, and prototypes that strengthen real-world delivery skills.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="certifications-section portfolio-section" id="certifications">
+            <div class="contanier">
+                <div class="section-heading">
+                    <span>Certifications</span>
+                    <h2>Credentials</h2>
+                    <p>Professional records and certificates that support my technical development.</p>
+                </div>
+                <div class="cert-grid">
+                    <article class="cert-card">
+                        <img src="img/red18.jpg" alt="Certificate preview" loading="lazy">
+                        <div>
+                            <h3>Certificate Portfolio</h3>
+                            <p>Selected certificates, awards, and training records.</p>
+                            <a class="text-link" href="c/b8d4f10a-19e6-4f43-965a-26f7b0b7f4c9/" target="_blank" rel="noopener noreferrer">
+                                View Certificate
+                            </a>
+                        </div>
+                    </article>
+                    <article class="cert-card">
+                        <img src="img/about.png" alt="Technical certification preview" loading="lazy">
+                        <div>
+                            <h3>NCII Technical Skills</h3>
+                            <p>Practical competency and technical troubleshooting foundation.</p>
+                            <a class="text-link" href="#Contacts">Request Details</a>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="blog-section portfolio-section" id="Blog">
+            <div class="contanier">
+                <div class="section-heading">
+                    <span>Blog</span>
+                    <h2>Notes & Learning</h2>
+                    <p>Short reflections from my work in programming, IoT, and creative technology.</p>
+                </div>
+                <div class="blog-grid">
+                    <article class="blog-card">
+                        <img src="img/red12.jpg" alt="Programming desk preview" loading="lazy">
+                        <div>
+                            <h3>Building Better Web Systems</h3>
+                            <p>How I approach simple, maintainable web apps with PHP, MySQL, and JavaScript.</p>
+                            <a class="text-link" href="#projects">Read More</a>
+                        </div>
+                    </article>
+                    <article class="blog-card">
+                        <img src="img/red15.jpg" alt="Technology project preview" loading="lazy">
+                        <div>
+                            <h3>IoT Project Thinking</h3>
+                            <p>Planning sensors, automation flows, and dashboards before writing code.</p>
+                            <a class="text-link" href="#projects">Read More</a>
+                        </div>
+                    </article>
+                    <article class="blog-card">
+                        <img src="img/red17.jpg" alt="Creative work preview" loading="lazy">
+                        <div>
+                            <h3>Designing for Real Users</h3>
+                            <p>Why clean UI, readable layouts, and mobile testing matter in student projects.</p>
+                            <a class="text-link" href="#Contacts">Read More</a>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="Contacts portfolio-section" id="Contacts">
+            <div class="contanier">
+                <div class="section-heading">
+                    <span>Contact</span>
+                    <h2>Let's Build Something</h2>
+                    <p>Open to internships, software engineering opportunities, capstone collaboration, and freelance projects.</p>
+                </div>
+
+                <div class="contact-grid">
+                    <div class="contact-info">
+                        <p><i class="fa-solid fa-envelope"></i><span>Email available on request</span></p>
+                        <a href="https://github.com/RedjanVisitacion" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i><span>github.com/RedjanVisitacion</span></a>
+                        <a href="https://web.facebook.com/zedjan.zedjan.3" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-facebook-f"></i><span>Facebook</span></a>
+                        <a href="https://www.instagram.com/redjanphilsvisitacion?igsh=MXF2c2t5ZGttanJjeA==" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-instagram"></i><span>Instagram</span></a>
+                        <p><i class="fa-solid fa-location-dot"></i><span>Philippines</span></p>
+                    </div>
+
+                    <div class="contact-form">
+                        <h3>Send a Message</h3>
+                        <form method="POST" action="#" onsubmit="return false;">
+                            <label>
+                                <span>Name</span>
+                                <input type="text" name="name" placeholder="Your Name" required>
+                            </label>
+                            <label>
+                                <span>Email</span>
+                                <input type="email" name="email" placeholder="Your Email" required>
+                            </label>
+                            <label>
+                                <span>Message</span>
+                                <textarea name="message" placeholder="Tell me about your project or opportunity" rows="5" required></textarea>
+                            </label>
+                            <button type="button" id="sendMessageBtn">
+                                <i class="fa-solid fa-paper-plane"></i>
+                                <span>Send Message</span>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="portfolio-footer">
+        <div class="contanier footer-grid">
+            <div>
+                <h2>Redjan Phil S. Visitacion</h2>
+                <p>BSIT Student | Full-Stack Web Developer | IoT Enthusiast</p>
+                <p>Built with HTML, CSS, JavaScript, PHP, and GitHub.</p>
+            </div>
+            <div class="footer-links">
+                <a href="#home">Home</a>
+                <a href="#about">About</a>
+                <a href="#skills">Skills</a>
+                <a href="#projects">Projects</a>
+                <a href="#Contacts">Contact</a>
+            </div>
+            <div class="footer-socials">
+                <a href="https://github.com/RedjanVisitacion" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+                <a href="https://web.facebook.com/zedjan.zedjan.3" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="https://www.instagram.com/redjanphilsvisitacion?igsh=MXF2c2t5ZGttanJjeA==" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://www.tiktok.com/@rpsv_codes?_t=8k15sq4ZSew&_r=1" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
             </div>
         </div>
-    </div>
-</section>
-
-<!-- End Service Section -->
-
-                
-<!-- Blog Section -->
-<section class="Service" id="Blog">
-    <div class="sec-top">
-        <span>Blog</span>
-    </div>
-    <p class="section-description">
-        Welcome to my blog—a space where I share my journey in photography, programming, and video editing.  
-        From capturing emotions through the lens to tackling coding challenges and crafting stunning visuals,  
-        this blog is a mix of creativity, insights, and inspiration. Join me as I explore new ideas, share tips,  
-        and navigate the exciting path of learning and growth. Let’s create, innovate, and inspire together!
-    </p>
-    
-</section>
-
-
-
-<!-- Pages Section -->
-<section class="pages" id="Pages">
-    <div class="sec-top">  
-        <span>Pages</span>
-    </div>
-    <div class="container">
-        <div class="content">
-            <h2>Skills & Projects</h2>
-            <p class="words">Dive into my world of programming, photography, and video editing. Check out my latest works, tutorials, and projects.</p>
-            
-            <div class="page-links">
-                <a href="#" class="page-card" onclick="alert('This part is not completely done');">
-                    <i class="fa-solid fa-code"></i>
-                    <h3>Programming</h3>
-                    <p>See my latest coding projects and software development work.</p>
-                </a>
-            
-                <a href="#" class="page-card" onclick="alert('This part is not completely done');">
-                    <i class="fa-solid fa-camera"></i>
-                    <h3>Photography</h3>
-                    <p>Explore my best photography shots and editing techniques.</p>
-                </a>
-            
-                <a href="#" class="page-card" onclick="alert('This part is not completely done');">
-                    <i class="fa-solid fa-film"></i>
-                    <h3>Video Editing</h3>
-                    <p>Watch my editing projects and learn cool video effects.</p>
-                </a>
-            
-                <a href="#" class="page-card" onclick="alert('This part is not completely done');">
-                    <i class="fa-solid fa-chalkboard-teacher"></i>
-                    <h3>Tutorials</h3>
-                    <p>Learn programming, photography, and editing from my guides.</p>
-                </a>
-            </div>
-            
-        </div>
-    </div>
-</section>
-
-
-   
-       <!-- Contacts Section -->
-<section class="Contacts" id="Contacts">
-
-    
-
-    <div class="sec-top">  
-        <span>Contacts</span>
-
-    </div>
-
-
-    <div class="container">
-        <div class="contact-content">
-            <p>If you have any inquiries about programming, photography, or video editing, feel free to reach out to me. I'm always open to collaborations and new projects!</p>
-        </div>
-
-
-        
-
-        <!-- Contact Form -->
-        <div class="contact-form">
-            <h3>Send a Message</h3>
-            <form method="POST" action="#" onsubmit="return false;">
-                <input type="text" name="name" placeholder="Your Name" required>
-                <input type="email" name="email"  placeholder="Your Email" required>
-                <textarea name="message" placeholder="Your Message" rows="4" required></textarea>
-                <button type="button" id="sendMessageBtn">Send</button>
-            </form>
-        </div>
-    </div> 
-    
-
-    
-    
-
-        <!-- Social Media Links -->
-        <div class="social-status">
-            <h3>Follow Me On:</h3>
-
-
-            <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@rpsv_codes" data-unique-id="rpsv_codes" data-embed-type="creator" style="max-width: 780px; min-width: 288px;" > <section> <a target="_blank" href="https://www.tiktok.com/@rpsv_codes?refer=creator_embed">@rpsv_codes</a> </section> </blockquote> <script async src="https://www.tiktok.com/embed.js"></script>
-
-
-
-
-            <a href="https://github.com/RedjanVisitacion" target="_blank">
-                <img src="https://img.shields.io/badge/GitHub-RedjanVisitacion-blue?style=for-the-badge&logo=github" alt="GitHub Profile">
-            </a>
-            
-
-
-
-
-            <p>&#8203;</p>
-
-
-            <div class="social-profile-list">
-                <a href="https://www.instagram.com/redjanphilsvisitacion?igsh=MXF2c2t5ZGttanJjeA==" target="_blank">
-                    <i class="fab fa-instagram"></i>
-                </a>
-                <a href="https://web.facebook.com/zedjan.zedjan.3" target="_blank">
-                    <i class="fab fa-facebook-f"></i>
-                </a>
-                <a href="https://www.tiktok.com/@rpsv_codes?_t=8k15sq4ZSew&_r=1" target="_blank">
-                    <i class="fab fa-tiktok"></i>
-                </a>
-                <a href="https://www.youtube.com/@redjanvisitacion5570" target="_blank">
-                    <i class="fab fa-youtube"></i>
-                </a>
-               
-            </div>
-        </div>
-
-        
-    </div>
-
-
-    
-
-</section>
-
-
-     <!-- Footer -->
-
-   <footer>
-    <p>&copy; 2025 Redjan Phil S. Visitacion | Owner of this Website</p>
-   </footer>
-    
-
-
-
+        <p class="copyright">&copy; 2026 Redjan Phil S. Visitacion. All rights reserved.</p>
+    </footer>
 
     <!-- Hash-route: login overlay -->
     <div id="route-login-overlay">
         <iframe id="route-login-frame" src="about:blank" title="Login"></iframe>
     </div>
-    <!-- Swiper JS -->
-    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
 
-    <!-- link file JS -->
-    <script src="function/main.js?v=20260627d"></script>
+    <script src="function/main.js?v=20260628a"></script>
+    <script src="function/github-projects.js?v=20260628a"></script>
     <script>
       (function(){
         function updateRoute(){
