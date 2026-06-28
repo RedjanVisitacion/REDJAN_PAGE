@@ -133,7 +133,7 @@
         var htmlIndex = path.lastIndexOf('/html/');
         prefix = htmlIndex >= 0 ? path.slice(0, htmlIndex + 1) + 'c/' : path.replace(/[^\/]*$/, '') + 'c/';
       }
-      return prefix + id + (query ? '?' + query : '');
+      return prefix + id + '/' + (query ? '?' + query : '');
     }
     (function canonicalizeLoginRoute(){
       if (/\/html\/Login\.html$/i.test(location.pathname)) {

@@ -335,7 +335,7 @@ function initContactGate(){
       if (!data || !data.logged_in){
         alert('Please register or login to send a message.');
         var basePath = location.pathname.replace(/[^\/]*$/, '');
-        window.location.href = basePath + 'c/6fa3f52ec-a830-83ec-aeb0-a1b2fb7fd22d';
+        window.location.href = basePath + 'c/6fa3f52ec-a830-83ec-aeb0-a1b2fb7fd22d/';
         return;
       }
       var sendUrls = ['php/message_send.php','/php/message_send.php','/VISITACION-LANDING-PAGE/php/message_send.php'];

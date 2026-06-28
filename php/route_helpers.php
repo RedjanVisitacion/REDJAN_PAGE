@@ -25,6 +25,10 @@ function rpsv_public_base_path()
     if ($dir === '.' || $dir === '/') {
         return '';
     }
+    $routePos = strpos($dir, '/c/');
+    if ($routePos !== false) {
+        return rtrim(substr($dir, 0, $routePos), '/');
+    }
     if (substr($dir, -4) === '/php') {
         $dir = substr($dir, 0, -4);
     } elseif (substr($dir, -2) === '/c') {
@@ -36,7 +40,7 @@ function rpsv_public_base_path()
 function rpsv_route_path($nameOrId, $params = [])
 {
     $id = rpsv_route_id($nameOrId);
-    $path = rpsv_public_base_path() . '/c/' . rawurlencode($id);
+    $path = rpsv_public_base_path() . '/c/' . rawurlencode($id) . '/';
     $path = preg_replace('#/+#', '/', $path);
     if ($path === '') {
         $path = '/';

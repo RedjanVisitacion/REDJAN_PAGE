@@ -25,7 +25,26 @@ if (!$root || !$target || strpos($target, $root . DIRECTORY_SEPARATOR) !== 0 || 
     exit;
 }
 
+$publicDir = trim(str_replace('\\', '/', dirname($record['file'])), './');
+$basePath = rpsv_public_base_path();
+$baseHref = preg_replace('#/+#', '/', $basePath . '/' . ($publicDir !== '' ? $publicDir . '/' : ''));
+if ($baseHref === '') {
+    $baseHref = '/';
+}
+
+$html = file_get_contents($target);
+if ($html === false) {
+    http_response_code(500);
+    header('Content-Type: text/plain; charset=UTF-8');
+    echo 'Unable to load page.';
+    exit;
+}
+if (stripos($html, '<base ') === false) {
+    $baseTag = '<base href="' . htmlspecialchars($baseHref, ENT_QUOTES, 'UTF-8') . '">';
+    $html = preg_replace('/<head(\s[^>]*)?>/i', '$0' . "\n  " . $baseTag, $html, 1);
+}
+
 header('Content-Type: text/html; charset=UTF-8');
 header('X-Robots-Tag: noindex');
-readfile($target);
+echo $html;
 ?>

@@ -39,7 +39,7 @@
     </div>
     <div class="actions">
       <button id="btnSubmit" class="btn" style="display:none">Set password</button>
-      <a id="backLogin" href="../c/6fa3f52ec-a830-83ec-aeb0-a1b2fb7fd22d" class="btn secondary">Back to Login</a>
+      <a id="backLogin" href="../c/6fa3f52ec-a830-83ec-aeb0-a1b2fb7fd22d/" class="btn secondary">Back to Login</a>
     </div>
   </div>
 
@@ -56,7 +56,7 @@
           var htmlIndex = path.lastIndexOf('/html/');
           prefix = htmlIndex >= 0 ? path.slice(0, htmlIndex + 1) + 'c/' : path.replace(/[^\/]*$/, '') + 'c/';
         }
-        return prefix + id + (query ? '?' + query : '');
+        return prefix + id + '/' + (query ? '?' + query : '');
       }
       function loginUrl(){
         return routeUrl('6fa3f52ec-a830-83ec-aeb0-a1b2fb7fd22d', 'pwreset=1');
