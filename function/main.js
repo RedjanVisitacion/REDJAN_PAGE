@@ -137,6 +137,7 @@ function openLightbox(src, type) {
     const lightbox = document.getElementById("lightbox");
     const img = document.getElementById("lightbox-img");
     const video = document.getElementById("lightbox-video");
+    if (!lightbox || !img || !video) return;
 
     lightbox.style.display = "flex";
 
@@ -155,6 +156,7 @@ function openLightbox(src, type) {
 function closeLightbox() {
     const lightbox = document.getElementById("lightbox");
     const video = document.getElementById("lightbox-video");
+    if (!lightbox || !video) return;
 
     lightbox.style.display = "none";
     video.pause();
